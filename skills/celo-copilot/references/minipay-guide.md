@@ -100,7 +100,7 @@ useEffect(() => {
 |-------|--------|---------|----------|
 | Mento Dollar | USDm (cUSD) | `0x765DE816845861e75A25fCA122bb6898B8B1282a` | 18 |
 | USDC | USDC | `0xcebA9300f2b948710d2653dD7B07f33A8B32118C` | 6 |
-| USDT | USDT | `0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e` | 6 |
+| USDT | USDT | `0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e` | 6 |
 
 **Important**: USDm has 18 decimals while USDC/USDT have 6. Always check decimals before displaying amounts.
 

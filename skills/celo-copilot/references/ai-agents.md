@@ -132,7 +132,7 @@ Protocol enabling pay-per-request APIs using HTTP 402 status code and stablecoin
 | Token | Address | Decimals |
 |-------|---------|----------|
 | USDC | `0xcebA9300f2b948710d2653dD7B07f33A8B32118C` | 6 |
-| USDT | `0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e` | 6 |
+| USDT | `0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e` | 6 |
 | USDm | `0x765DE816845861e75A25fCA122bb6898B8B1282a` | 18 |
 
 ### Server Implementation (Next.js)

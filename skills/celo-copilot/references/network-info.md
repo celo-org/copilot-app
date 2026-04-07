@@ -11,7 +11,7 @@
 | Currency Symbol | CELO |
 | Public RPC | `https://forno.celo.org` (rate-limited) |
 | Block Explorer (primary) | https://celoscan.io |
-| Block Explorer (alt) | https://explorer.celo.org |
+| Block Explorer (alt) | https://celo.blockscout.com |
 | Block Time | ~1 second |
 | Average Gas Fee | ~$0.0005 |
 | Native Bridge | https://superbridge.app/celo |
@@ -66,5 +66,4 @@ The `FeeCurrencyDirectory` contract at `0x15F344b9E6c3Cb6F0376A36A64928b13F62C62
 | Explorer | URL | Notes |
 |----------|-----|-------|
 | Celoscan | https://celoscan.io | Primary, Etherscan-family |
-| Blockscout | https://explorer.celo.org | Open-source, full-featured |
-| Dora | https://www.ondora.xyz/network/celo | Multi-chain explorer |
+| Blockscout | https://celo.blockscout.com | Open-source, full-featured (explorer.celo.org redirects here) |

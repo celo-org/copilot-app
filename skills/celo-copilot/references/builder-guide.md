@@ -53,7 +53,7 @@ Users can pay gas fees with ERC-20 tokens instead of native CELO. This is Celo's
 | EURm (cEUR) | 18 | `0xD8763CBa276a3738E6DE85b4b3bF5FDed6D6cA73` | `0xD8763CBa276a3738E6DE85b4b3bF5FDed6D6cA73` (same) |
 | BRLm (cREAL) | 18 | `0xe8537a3d056DA446677B9E9d6c5dB704EaAb4787` | `0xe8537a3d056DA446677B9E9d6c5dB704EaAb4787` (same) |
 | USDC | 6 | `0xcebA9300f2b948710d2653dD7B07f33A8B32118C` | `0x2F25deB3848C207fc8E0c34035B3Ba7fC157602B` (adapter) |
-| USDT | 6 | `0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e` | `0x0e2a3e05bc9a16f5292a6170456a710cb89c6f72` (adapter) |
+| USDT | 6 | `0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e` | `0x0e2a3e05bc9a16f5292a6170456a710cb89c6f72` (adapter) |
 
 The `FeeCurrencyDirectory` contract at `0x9212Fb72ae65367A7c887eC4Ad9bE310BAC611BF` governs the allowlist. Query it:
 
@@ -128,7 +128,7 @@ forge verify-contract <CONTRACT_ADDRESS> <CONTRACT_NAME> \
 forge verify-contract <CONTRACT_ADDRESS> <CONTRACT_NAME> \
   --chain-id 42220 \
   --verifier blockscout \
-  --verifier-url https://explorer.celo.org/api
+  --verifier-url https://celo.blockscout.com/api
 ```
 
 Get a Celoscan API key at: https://celoscan.io/myapikey
