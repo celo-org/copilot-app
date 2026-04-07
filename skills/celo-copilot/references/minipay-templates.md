@@ -1,0 +1,392 @@
+# MiniPay Code Templates
+
+Ready-to-use code for common Mini App patterns.
+
+---
+
+## 1. Next.js MiniPay Starter Page
+
+```tsx
+"use client";
+
+import { useEffect, useState } from "react";
+import { createWalletClient, createPublicClient, custom, http, formatUnits } from "viem";
+import { celo } from "viem/chains";
+
+const USDM_ADDRESS = "0x765DE816845861e75A25fCA122bb6898B8B1282a" as const;
+const USDC_ADDRESS = "0xcebA9300f2b948710d2653dD7B07f33A8B32118C" as const;
+
+const ERC20_ABI = [
+  {
+    name: "balanceOf",
+    type: "function",
+    stateMutability: "view",
+    inputs: [{ name: "account", type: "address" }],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    name: "transfer",
+    type: "function",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "to", type: "address" },
+      { name: "value", type: "uint256" },
+    ],
+    outputs: [{ name: "", type: "bool" }],
+  },
+] as const;
+
+export default function MiniPayApp() {
+  const [address, setAddress] = useState<`0x${string}` | null>(null);
+  const [balance, setBalance] = useState<string>("0");
+  const [isMiniPay, setIsMiniPay] = useState(false);
+
+  const publicClient = createPublicClient({
+    chain: celo,
+    transport: http(),
+  });
+
+  useEffect(() => {
+    async function connect() {
+      if (typeof window === "undefined" || !window.ethereum) return;
+
+      const mp = window.ethereum.isMiniPay === true;
+      setIsMiniPay(mp);
+
+      if (mp) {
+        const client = createWalletClient({
+          chain: celo,
+          transport: custom(window.ethereum),
+        });
+        const [addr] = await client.getAddresses();
+        setAddress(addr);
+
+        // Fetch USDm balance
+        const bal = await publicClient.readContract({
+          address: USDM_ADDRESS,
+          abi: ERC20_ABI,
+          functionName: "balanceOf",
+          args: [addr],
+        });
+        setBalance(formatUnits(bal, 18));
+      }
+    }
+    connect();
+  }, []);
+
+  if (!isMiniPay) {
+    return <div>Please open this app in MiniPay</div>;
+  }
+
+  return (
+    <div>
+      <p>Connected: {address}</p>
+      <p>USDm Balance: ${balance}</p>
+    </div>
+  );
+}
+```
+
+---
+
+## 2. useMiniPay React Hook
+
+```typescript
+import { useEffect, useState, useCallback } from "react";
+import { createWalletClient, createPublicClient, custom, http, formatUnits } from "viem";
+import { celo } from "viem/chains";
+
+const USDM_ADDRESS = "0x765DE816845861e75A25fCA122bb6898B8B1282a" as const;
+
+const BALANCE_ABI = [
+  {
+    name: "balanceOf",
+    type: "function",
+    stateMutability: "view",
+    inputs: [{ name: "account", type: "address" }],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+] as const;
+
+export function useMiniPay() {
+  const [address, setAddress] = useState<`0x${string}` | null>(null);
+  const [balance, setBalance] = useState<string>("0");
+  const [isMiniPay, setIsMiniPay] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const publicClient = createPublicClient({
+    chain: celo,
+    transport: http(),
+  });
+
+  const refreshBalance = useCallback(async () => {
+    if (!address) return;
+    const bal = await publicClient.readContract({
+      address: USDM_ADDRESS,
+      abi: BALANCE_ABI,
+      functionName: "balanceOf",
+      args: [address],
+    });
+    setBalance(formatUnits(bal, 18));
+  }, [address]);
+
+  useEffect(() => {
+    async function init() {
+      if (typeof window === "undefined" || !window.ethereum) {
+        setIsLoading(false);
+        return;
+      }
+
+      const mp = window.ethereum.isMiniPay === true;
+      setIsMiniPay(mp);
+
+      if (mp) {
+        const client = createWalletClient({
+          chain: celo,
+          transport: custom(window.ethereum),
+        });
+        const [addr] = await client.getAddresses();
+        setAddress(addr);
+      }
+      setIsLoading(false);
+    }
+    init();
+  }, []);
+
+  useEffect(() => {
+    if (address) refreshBalance();
+  }, [address, refreshBalance]);
+
+  return { address, balance, isMiniPay, isLoading, refreshBalance };
+}
+```
+
+---
+
+## 3. Stablecoin Payment Flow
+
+```typescript
+import {
+  createWalletClient,
+  createPublicClient,
+  custom,
+  http,
+  encodeFunctionData,
+  parseUnits,
+  formatUnits,
+} from "viem";
+import { celo } from "viem/chains";
+
+const USDM_ADDRESS = "0x765DE816845861e75A25fCA122bb6898B8B1282a" as const;
+
+const ERC20_ABI = [
+  {
+    name: "transfer",
+    type: "function",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "to", type: "address" },
+      { name: "value", type: "uint256" },
+    ],
+    outputs: [{ name: "", type: "bool" }],
+  },
+  {
+    name: "balanceOf",
+    type: "function",
+    stateMutability: "view",
+    inputs: [{ name: "account", type: "address" }],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+] as const;
+
+async function sendPayment(
+  recipientAddress: `0x${string}`,
+  amountUsd: string, // e.g., "5.00"
+) {
+  const walletClient = createWalletClient({
+    chain: celo,
+    transport: custom(window.ethereum),
+  });
+
+  const publicClient = createPublicClient({
+    chain: celo,
+    transport: http(),
+  });
+
+  const [senderAddress] = await walletClient.getAddresses();
+  const amount = parseUnits(amountUsd, 18);
+
+  // Check balance first
+  const balance = await publicClient.readContract({
+    address: USDM_ADDRESS,
+    abi: ERC20_ABI,
+    functionName: "balanceOf",
+    args: [senderAddress],
+  });
+
+  if (balance < amount) {
+    throw new Error(
+      `Insufficient balance: ${formatUnits(balance, 18)} USDm, need ${amountUsd}`
+    );
+  }
+
+  // Encode transfer call
+  const data = encodeFunctionData({
+    abi: ERC20_ABI,
+    functionName: "transfer",
+    args: [recipientAddress, amount],
+  });
+
+  // Send with fee abstraction (gas paid in USDm)
+  const txHash = await walletClient.sendTransaction({
+    account: senderAddress,
+    to: USDM_ADDRESS,
+    data,
+    feeCurrency: USDM_ADDRESS,
+  });
+
+  // Wait for confirmation
+  const receipt = await publicClient.waitForTransactionReceipt({
+    hash: txHash,
+  });
+
+  return {
+    txHash,
+    success: receipt.status === "success",
+    blockNumber: receipt.blockNumber,
+  };
+}
+```
+
+---
+
+## 4. Bill Payment Pattern
+
+Common Mini App pattern: user enters an amount, selects a service, and pays.
+
+```tsx
+"use client";
+
+import { useState } from "react";
+import { useMiniPay } from "./useMiniPay";
+import { createWalletClient, custom, encodeFunctionData, parseUnits } from "viem";
+import { celo } from "viem/chains";
+
+const USDM_ADDRESS = "0x765DE816845861e75A25fCA122bb6898B8B1282a" as const;
+const MERCHANT_ADDRESS = "0x..."; // Your merchant wallet
+
+const TRANSFER_ABI = [
+  {
+    name: "transfer",
+    type: "function",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "to", type: "address" },
+      { name: "value", type: "uint256" },
+    ],
+    outputs: [{ name: "", type: "bool" }],
+  },
+] as const;
+
+export default function BillPayment() {
+  const { address, balance, isMiniPay, isLoading } = useMiniPay();
+  const [amount, setAmount] = useState("");
+  const [status, setStatus] = useState<"idle" | "pending" | "success" | "error">("idle");
+
+  async function handlePay() {
+    if (!address || !amount) return;
+    setStatus("pending");
+
+    try {
+      const client = createWalletClient({
+        chain: celo,
+        transport: custom(window.ethereum),
+      });
+
+      const data = encodeFunctionData({
+        abi: TRANSFER_ABI,
+        functionName: "transfer",
+        args: [MERCHANT_ADDRESS, parseUnits(amount, 18)],
+      });
+
+      await client.sendTransaction({
+        account: address,
+        to: USDM_ADDRESS,
+        data,
+        feeCurrency: USDM_ADDRESS,
+      });
+
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (isLoading) return <p>Loading...</p>;
+  if (!isMiniPay) return <p>Open in MiniPay</p>;
+
+  return (
+    <div>
+      <h1>Pay Bill</h1>
+      <p>Balance: ${balance} USDm</p>
+      <input
+        type="number"
+        placeholder="Amount in USD"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+      />
+      <button onClick={handlePay} disabled={status === "pending"}>
+        {status === "pending" ? "Processing..." : "Pay"}
+      </button>
+      {status === "success" && <p>Payment successful!</p>}
+      {status === "error" && <p>Payment failed. Try again.</p>}
+    </div>
+  );
+}
+```
+
+---
+
+## 5. Multi-Token Balance Display
+
+```tsx
+import { createPublicClient, http, formatUnits } from "viem";
+import { celo } from "viem/chains";
+
+const TOKENS = [
+  { symbol: "USDm", address: "0x765DE816845861e75A25fCA122bb6898B8B1282a", decimals: 18 },
+  { symbol: "USDC", address: "0xcebA9300f2b948710d2653dD7B07f33A8B32118C", decimals: 6 },
+  { symbol: "USDT", address: "0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e", decimals: 6 },
+] as const;
+
+const BALANCE_ABI = [
+  {
+    name: "balanceOf",
+    type: "function",
+    stateMutability: "view",
+    inputs: [{ name: "account", type: "address" }],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+] as const;
+
+async function getAllBalances(userAddress: `0x${string}`) {
+  const client = createPublicClient({ chain: celo, transport: http() });
+
+  const balances = await Promise.all(
+    TOKENS.map(async (token) => {
+      const raw = await client.readContract({
+        address: token.address,
+        abi: BALANCE_ABI,
+        functionName: "balanceOf",
+        args: [userAddress],
+      });
+      return {
+        symbol: token.symbol,
+        balance: formatUnits(raw, token.decimals),
+      };
+    })
+  );
+
+  return balances;
+}
+```
