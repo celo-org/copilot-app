@@ -103,9 +103,9 @@ export default function Home() {
             <img
               src="https://framerusercontent.com/images/4QwLLMpyMuhMZ8kCZqNVWR7ji4.png?scale-down-to=512"
               alt="Celo"
-              className="h-7"
+              className="h-8"
             />
-            <span className="text-sm font-medium text-hero-text ml-1">
+            <span className="text-xl font-bold text-hero-text ml-1.5 tracking-tight">
               Copilot
             </span>
           </a>
