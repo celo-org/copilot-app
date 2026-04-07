@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Celo Copilot — Landing Page
 
-## Getting Started
+The marketing landing page for [Celo Copilot](https://github.com/celo-org/copilot), the comprehensive AI skill for building on the Celo ecosystem.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router)
+- **Tailwind CSS v4**
+- **TypeScript**
+- **Fonts**: Instrument Serif (headings) + Inter (body) — matching celo.org's typography
+- **Design**: Celo brand yellow (`#FCFF52`) hero, dark sections, pill buttons
+
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+  app/
+    globals.css           # Tailwind theme, Celo brand colors, animations
+    layout.tsx            # Fonts, metadata, OG tags
+    page.tsx              # Main landing page (all sections)
+  components/
+    TerminalMockup.tsx    # Animated terminal demo
+    InstallCommand.tsx    # Copy-to-clipboard install command
+    FeatureCard.tsx       # Stats card (150+, 6,300+, etc.)
+    UseCaseCard.tsx       # Use case card
+    SourcesMarquee.tsx    # Scrolling data sources marquee
+```
 
-## Learn More
+## Sections
 
-To learn more about Next.js, take a look at the following resources:
+1. **Hero** — Yellow Celo-branded hero with terminal mockup animation
+2. **What's Inside** — 6 feature cards with key stats
+3. **Topic Clusters** — Tag pills for ecosystem verticals
+4. **Data Sources** — Full-bleed marquee of curated sources
+5. **What Builders Ask** — 6 use case cards
+6. **Get Started** — CTA with install command
+7. **Footer** — celo.org-style yellow footer with columns and social icons
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deploy to Vercel:
 
-## Deploy on Vercel
+```bash
+vercel
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Related
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [celo-org/copilot](https://github.com/celo-org/copilot) — The actual skill (markdown + reference files)
+- [celo-org/agent-skills](https://github.com/celo-org/agent-skills) — Celo's modular agent skills collection
+
+## License
+
+Apache-2.0
