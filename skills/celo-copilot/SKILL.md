@@ -144,18 +144,26 @@ Chain IDs, RPCs, explorers, faucets, and fee currency addresses.
 | Governance | Check `governance.md` |
 | SDK help | Check `sdk-reference.md` |
 
-### Step 2: Gather Evidence
+### Step 2: Gather Evidence (Prefer Live Data)
 
-- The Grid for live ecosystem data (GraphQL queries)
-- Reference files for Celo-specific data (authoritative, sourced from docs.celo.org)
-- Cross-reference multiple sources when possible
+**Always prefer live API calls over hardcoded reference files** for data that changes (TVL, prices, grants, protocol status). See `live-data-sources.md` for all available APIs.
+
+| Data Type | Live Source | Fallback |
+|-----------|-----------|----------|
+| DeFi TVL / protocols | DefiLlama API (`api.llama.fi`) | `ecosystem.md` snapshot |
+| Ecosystem products | The Grid GraphQL | `ecosystem.md` snapshot |
+| Grant programs | Fetch `celopg.eco/programs` | `grants-funding.md` snapshot |
+| Contract addresses | `contracts.md` (stable, rarely changes) | — |
+| Docs pages | `curl docs.celo.org/llms.txt` | `docs-map.md` snapshot |
+| On-chain data | Celo RPC (`forno.celo.org`) | — |
+| Token/contract info | Blockscout API (no key needed) | Celoscan API (key needed) |
 
 ### Step 3: Synthesize & Present
 
 - Lead with the direct answer
 - Include contract addresses with chain context
 - Link to docs pages for deep dives
-- Flag stale data (reference files are snapshots; The Grid is live)
+- **Flag when using snapshot data** — tell the user if data might be stale and suggest the live source
 - Suggest grants if the user is building
 
 ---
