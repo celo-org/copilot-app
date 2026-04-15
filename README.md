@@ -7,7 +7,7 @@ The marketing landing page for [Celo Copilot](https://github.com/celo-org/copilo
 - **Next.js 16** (App Router)
 - **Tailwind CSS v4**
 - **TypeScript**
-- **Fonts**: Instrument Serif (headings) + Inter (body) — matching celo.org's typography
+- **Fonts**: GT Alpina Thin (headings) + Inter (body) — matching celo.org's typography
 - **Design**: Celo brand yellow (`#FCFF52`) hero, dark sections, pill buttons
 
 ## Development

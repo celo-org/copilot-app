@@ -52,7 +52,7 @@ const DEMOS: { prompt: string; lines: Line[] }[] = [
       { type: "output", text: "" },
       {
         type: "result",
-        text: "MiniPay: 11M+ wallets, 60+ countries, sub-cent fees",
+        text: "MiniPay: 14M+ wallets, 60+ countries, sub-cent fees",
       },
       { type: "output", text: "" },
       { type: "result", text: "Quick start:" },
@@ -108,6 +108,30 @@ const DEMOS: { prompt: string; lines: Line[] }[] = [
       {
         type: "highlight",
         text: "Quota \u2260 wallet balance \u2014 top up ODIS before lookups.",
+      },
+    ],
+  },
+  {
+    prompt: "What Mini Apps are already live in MiniPay discovery?",
+    lines: [
+      { type: "output", text: "Opening minipay-live-apps.md..." },
+      { type: "output", text: "" },
+      {
+        type: "result",
+        text: "Snapshot: finance, games, rewards, sports, utility, shopping\u2026",
+      },
+      {
+        type: "result",
+        text: "  e.g. BitGifty (bills, airtime), Squid (BTC/ETH), Mento rewards",
+      },
+      {
+        type: "result",
+        text: "  Games: mchamp, Tradcast, MiniPlay \u2014 plus country targeting notes",
+      },
+      { type: "output", text: "" },
+      {
+        type: "highlight",
+        text: "Not every app in every country \u2014 check export + real MiniPay.",
       },
     ],
   },

@@ -31,10 +31,10 @@ const FEATURES = [
       "3 live + 17 past programs tracked. Prezenti, Celo Builder Fund, GoodBuilders \u2014 with matchmaking guide.",
   },
   {
-    stat: "11M+",
+    stat: "14M+",
     label: "MiniPay Wallets",
     description:
-      "Mini Apps, wallet detection, stablecoin payments, ngrok testing \u2014 plus phone-to-address lookup via ODIS (PnP), OdisPayments quota, and FederatedAttestations (MiniPay issuer in skill).",
+      "Mini Apps, wallet detection, stablecoin payments, ngrok testing \u2014 plus phone lookup (ODIS) and a live Mini Apps discovery snapshot (categories, links, per-country notes in minipay-live-apps.md).",
   },
   {
     stat: "10+",
@@ -49,6 +49,7 @@ const TOPIC_CLUSTERS = [
   "Stablecoins",
   "Payments",
   "MiniPay",
+  "Mini Apps",
   "ODIS",
   "AI Agents",
   "RWA",
@@ -85,6 +86,11 @@ const USE_CASES = [
     title: "Resolve phone numbers to wallets (MiniPay / ODIS)",
     description:
       "Step-by-step ODIS PnP flow: quota and OdisPayments, ContractKit + @celo/identity, FederatedAttestations, and the MiniPay issuer address \u2014 from odis-socialconnect.md.",
+  },
+  {
+    title: "See what Mini Apps are already live",
+    description:
+      "Discovery-style catalog in the skill: finance, games, rewards, utilities, and more \u2014 with country targeting context. Snapshot, not a live API; availability varies by market.",
   },
   {
     title: "Integrate DeFi protocols",
@@ -180,8 +186,9 @@ export default function Home() {
           </h2>
           <p className="text-muted text-sm mb-16 max-w-2xl leading-relaxed">
             Verified data from docs.celo.org, live ecosystem intelligence from
-            The Grid, and deep protocol references &mdash; all searchable from
-            inside Claude Code, Codex, or OpenClaw.
+            The Grid, deep protocol references, and a MiniPay live Mini Apps
+            discovery snapshot &mdash; all searchable from inside Claude Code,
+            Codex, or OpenClaw.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {FEATURES.map((f) => (

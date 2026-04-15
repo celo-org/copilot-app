@@ -39,8 +39,8 @@ body {
 
 /* Celo-style editorial headings — thin serif with tight tracking */
 h1, h2 {
-  font-family: var(--font-serif), "Instrument Serif", Georgia, serif;
-  font-weight: 400;
+  font-family: var(--font-serif), "GT Alpina", Georgia, serif;
+  font-weight: 100;
   letter-spacing: -0.02em;
 }
 

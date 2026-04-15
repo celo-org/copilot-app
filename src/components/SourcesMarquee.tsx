@@ -5,6 +5,7 @@ const SOURCES_ROW_1 = [
   { name: "Morpho", category: "DeFi" },
   { name: "Mento", category: "Stablecoins" },
   { name: "MiniPay", category: "Wallet" },
+  { name: "MiniPay Discovery", category: "Mini Apps" },
   { name: "ODIS & FederatedAttestations", category: "Identity" },
   { name: "Chainlink", category: "Oracle" },
   { name: "RedStone", category: "Oracle" },
