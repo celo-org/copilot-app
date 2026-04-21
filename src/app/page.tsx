@@ -109,17 +109,14 @@ export default function Home() {
     <main>
       {/* Header — matches celo.org style */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-hero-bg">
-        <div className="max-w-[1400px] mx-auto px-6 py-5 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2">
+        <div className="max-w-[1400px] mx-auto py-5 flex items-center justify-between">
+          <a href="/" className="flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://framerusercontent.com/images/4QwLLMpyMuhMZ8kCZqNVWR7ji4.png?scale-down-to=512"
-              alt="Celo"
-              className="h-8"
+              src="/celo-skills-logo.svg"
+              alt="Celo Skills"
+              className="h-7"
             />
-            <span className="text-xl font-bold text-hero-text ml-1.5 tracking-[-0.02em] font-serif">
-              Copilot
-            </span>
           </a>
           <div className="flex items-center gap-8">
             <nav className="hidden md:flex items-center gap-6 text-xs text-hero-text">
@@ -291,9 +288,9 @@ export default function Home() {
           <div className="mb-12">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://framerusercontent.com/images/4QwLLMpyMuhMZ8kCZqNVWR7ji4.png?scale-down-to=512"
-              alt="Celo"
-              className="h-12"
+              src="/celo-skills-logo.svg"
+              alt="Celo Skills"
+              className="h-10"
             />
           </div>
 
