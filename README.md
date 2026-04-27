@@ -1,6 +1,6 @@
-# Celo Copilot — Landing Page
+# Celopedia Skills — Landing Page
 
-The marketing landing page for [Celo Copilot](https://github.com/celo-org/copilot), the comprehensive AI skill for building on the Celo ecosystem.
+The marketing landing page for [Celopedia Skills](https://github.com/celo-org/celopedia-skills), the comprehensive AI skill for building on the Celo ecosystem.
 
 ## Stack
 
@@ -55,7 +55,7 @@ vercel
 
 ## Related
 
-- [celo-org/copilot](https://github.com/celo-org/copilot) — The actual skill (markdown + reference files)
+- [celo-org/celopedia-skills](https://github.com/celo-org/celopedia-skills) — The actual skill (markdown + reference files)
 - [celo-org/agent-skills](https://github.com/celo-org/agent-skills) — Celo's modular agent skills collection
 
 ## License
