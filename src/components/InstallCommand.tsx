@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export function InstallCommand() {
   const [copied, setCopied] = useState(false);
-  const command = "npx skills add celo-org/skills";
+  const command = "npx skills add celo-org/celopedia-skills";
 
   function handleCopy() {
     navigator.clipboard.writeText(command);

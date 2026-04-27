@@ -100,7 +100,7 @@ const USE_CASES = [
   {
     title: "Find the right grant",
     description:
-      "Tell Copilot what you\u2019re building and get matched to the best Celo funding program for your stage.",
+      "Tell Celopedia Skills what you\u2019re building and get matched to the best Celo funding program for your stage.",
   },
 ];
 
@@ -114,7 +114,7 @@ export default function Home() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/celo-skills-logo.svg"
-              alt="Celo Skills"
+              alt="Celo Celopedia Skills"
               className="h-7"
             />
           </a>
@@ -126,7 +126,7 @@ export default function Home() {
               <a href="https://docs.celo.org" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">Docs</a>
             </nav>
             <a
-              href="https://github.com/celo-org/skills"
+              href="https://github.com/celo-org/celopedia-skills"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-hero-text px-5 py-2 text-xs font-medium text-hero-text hover:bg-hero-text hover:text-hero-bg transition-colors"
@@ -151,7 +151,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap gap-4 mb-8">
               <a
-                href="https://github.com/celo-org/skills"
+                href="https://github.com/celo-org/celopedia-skills"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full border border-hero-text bg-hero-text text-hero-bg px-6 py-2.5 text-sm font-medium hover:bg-transparent hover:text-hero-text transition-colors"
@@ -262,7 +262,7 @@ export default function Home() {
           </div>
           <div className="flex justify-center gap-4">
             <a
-              href="https://github.com/celo-org/skills"
+              href="https://github.com/celo-org/celopedia-skills"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-hero-text bg-hero-text text-hero-bg px-6 py-2.5 text-sm font-medium hover:bg-transparent hover:text-hero-text transition-colors"
@@ -289,7 +289,7 @@ export default function Home() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/celo-skills-logo.svg"
-              alt="Celo Skills"
+              alt="Celo Celopedia Skills"
               className="h-10"
             />
           </div>
@@ -303,7 +303,7 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap gap-3">
                 <a
-                  href="https://github.com/celo-org/skills"
+                  href="https://github.com/celo-org/celopedia-skills"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-full border border-hero-text px-5 py-2 text-xs font-medium text-hero-text hover:bg-hero-text hover:text-hero-bg transition-colors"
@@ -383,7 +383,7 @@ export default function Home() {
               <a href="https://x.com/CeloOrg" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-hero-text flex items-center justify-center hover:opacity-80 transition-opacity" aria-label="X">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M12.6.75h2.45L9.73 6.87l6.27 8.38h-5.12L7.26 10.3l-4.42 4.95H.39l5.68-6.5L.12.75H5.4l3.46 4.58L12.6.75zm-.86 13.65h1.36L4.32 2.15H2.85l8.89 12.25z" fill="#FCFF52"/></svg>
               </a>
-              <a href="https://github.com/celo-org/skills" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-hero-text flex items-center justify-center hover:opacity-80 transition-opacity" aria-label="GitHub">
+              <a href="https://github.com/celo-org/celopedia-skills" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-hero-text flex items-center justify-center hover:opacity-80 transition-opacity" aria-label="GitHub">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 .5A8.5 8.5 0 00.5 9a8.5 8.5 0 005.81 8.07c.43.07.58-.18.58-.4 0-.2-.01-.87-.01-1.57-2.13.4-2.69-.52-2.86-1 0 0-.38-.98-.93-1.23-.34-.18-.82-.63-.01-.64.76-.01 1.3.7 1.48.99.87 1.46 2.26 1.05 2.81.8.09-.63.34-1.05.62-1.3-2.16-.24-4.42-1.08-4.42-4.8 0-1.06.38-1.93.99-2.61-.1-.25-.43-1.24.1-2.58 0 0 .81-.26 2.67.99a9.14 9.14 0 014.84 0c1.85-1.25 2.67-.99 2.67-.99.52 1.34.2 2.33.1 2.58.62.68.99 1.55.99 2.61 0 3.73-2.27 4.56-4.43 4.8.35.3.65.89.65 1.8 0 1.3-.01 2.35-.01 2.67 0 .22.15.48.58.4A8.5 8.5 0 009 .5z" fill="#FCFF52"/></svg>
               </a>
             </div>
